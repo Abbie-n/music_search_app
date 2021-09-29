@@ -10,13 +10,6 @@ class RequestHelper {
   }
 
   String baseUrl = 'http://ws.audioscrobbler.com/2.0/';
-  // String? getTopAlbumsUrl({required String apiKey}) {
-  //   String method = 'tag.gettopalbums';
-  //   String tag = 'all';
-  //   String _fullString =
-  //       '$baseUrl?method=$method&tag=$tag&api_key=$apiKey&format=json';
-  //   return _fullString;
-  // }
 
   String? getSearchResultsUrl({
     required String apiKey,
