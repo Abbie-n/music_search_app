@@ -5,18 +5,18 @@ import 'package:flutter/services.dart';
 class RequestHelper {
   Future<String> getKey() async {
     var jsonText = await rootBundle.loadString('assets/api_key.json');
-    String _data = json.decode(jsonText);
-    return _data;
+    final _data = json.decode(jsonText);
+    return _data['api_key'];
   }
 
   String baseUrl = 'http://ws.audioscrobbler.com/2.0/';
-  String? getTopAlbumsUrl({required String apiKey}) {
-    String method = 'tag.gettopalbums';
-    String tag = 'all';
-    String _fullString =
-        '$baseUrl?method=$method&tag=$tag&api_key=$apiKey&format=json';
-    return _fullString;
-  }
+  // String? getTopAlbumsUrl({required String apiKey}) {
+  //   String method = 'tag.gettopalbums';
+  //   String tag = 'all';
+  //   String _fullString =
+  //       '$baseUrl?method=$method&tag=$tag&api_key=$apiKey&format=json';
+  //   return _fullString;
+  // }
 
   String? getSearchResultsUrl({
     required String apiKey,

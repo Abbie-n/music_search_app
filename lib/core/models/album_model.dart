@@ -1,65 +1,20 @@
 import 'package:equatable/equatable.dart';
 
-class AlbumModel extends Equatable {
-  final Albums? albums;
-
-  const AlbumModel({this.albums});
-
-  factory AlbumModel.fromJson(Map<String, dynamic> json) {
-    return AlbumModel(
-        albums: json['albums'] != null
-            ? new Albums.fromJson(json['albums'])
-            : null);
-  }
-
-  @override
-  List<Object?> get props => [albums];
-}
-
-class Albums extends Equatable {
-  final List<Album>? album;
-
-  const Albums({this.album});
-
-  factory Albums.fromJson(Map<String, dynamic> json) {
-    return Albums(
-      album: getAlbum(
-        json['album'],
-      ),
-    );
-  }
-
-  static List<Album>? getAlbum(json) {
-    List<Album>? _album;
-    if (json != null) {
-      _album = <Album>[];
-      json.forEach((v) {
-        _album!.add(Album.fromJson(v));
-      });
-    }
-    return _album;
-  }
-
-  @override
-  List<Object?> get props => [album];
-}
-
 class Album extends Equatable {
   final String? name;
   final String? mbid;
   final String? url;
-  final Artist? artist;
+  final String? artist;
   final List<Image>? image;
 
   const Album({this.name, this.mbid, this.url, this.artist, this.image});
 
-  factory Album.fromJson(Map<String, dynamic> json) {
+  factory Album.fromJson(Map<dynamic, dynamic> json) {
     return Album(
       name: json['name'],
       mbid: json['mbid'],
       url: json['url'],
-      artist:
-          json['artist'] != null ? new Artist.fromJson(json['artist']) : null,
+      artist: json['artist'],
       image: getImages(json['image']),
     );
   }

@@ -10,9 +10,13 @@ part 'search_event.dart';
 part 'search_state.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
-  SearchBloc({required this.httpClient}) : super(const SearchState());
+  SearchBloc({
+    required this.httpClient,
+    this.album,
+  }) : super(const SearchState());
 
   final http.Client httpClient;
+  final album;
   @override
   Stream<SearchState> mapEventToState(
     SearchEvent event,
@@ -25,13 +29,13 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   Future<SearchState> _mapDataFetchedToState(SearchState state) async {
     try {
       if (state.status == SearchStatus.initial) {
-        final _data = await _search();
+        final _data = await _search(album);
         return state.copyWith(
           status: SearchStatus.success,
           data: _data,
         );
       }
-      final _data = await _search();
+      final _data = await _search(album);
 
       return state.copyWith(
         status: SearchStatus.success,
@@ -42,9 +46,10 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     }
   }
 
-  Future<SearchModel> _search() async {
+  Future<SearchModel> _search(String album) async {
     String key = await RequestHelper().getKey();
-    String? url = RequestHelper().getSearchResultsUrl(apiKey: key);
+    String? url =
+        RequestHelper().getSearchResultsUrl(apiKey: key, album: '$album');
     final response = await http.get(Uri.parse('$url'));
     if (response.statusCode == 200) {
       final body = json.decode(response.body);
