@@ -1,8 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:music_search_app/utils/app/colors.dart';
-import 'package:music_search_app/utils/size_config/config.dart';
-import 'package:music_search_app/utils/size_config/extensions.dart';
 
 class BaseScreen extends StatelessWidget {
   final body;
@@ -11,7 +9,6 @@ class BaseScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig.init(context);
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.dark,
       child: Scaffold(
@@ -19,8 +16,8 @@ class BaseScreen extends StatelessWidget {
         body: SafeArea(
           child: Container(
             padding: EdgeInsets.symmetric(
-              horizontal: 4.width,
-              vertical: 2.height,
+              horizontal: 15,
+              vertical: 10,
             ),
             child: body,
           ),

@@ -1,10 +1,26 @@
 part of 'info_bloc.dart';
 
-abstract class InfoState extends Equatable {
-  const InfoState();
-  
-  @override
-  List<Object> get props => [];
-}
+enum InfoStatus { initial, success, failure }
 
-class InfoInitial extends InfoState {}
+class InfoState extends Equatable {
+  const InfoState({
+    this.status = InfoStatus.initial,
+    this.data = const InfoModel(),
+  });
+
+  final InfoStatus status;
+  final InfoModel data;
+
+  InfoState copyWith({
+    InfoStatus? status,
+    InfoModel? data,
+  }) {
+    return InfoState(
+      status: status ?? this.status,
+      data: data ?? this.data,
+    );
+  }
+
+  @override
+  List<Object> get props => [status, data];
+}

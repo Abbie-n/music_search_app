@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:music_search_app/utils/app/colors.dart';
-import 'package:music_search_app/utils/size_config/config.dart';
-import 'package:music_search_app/utils/size_config/extensions.dart';
+import 'package:music_search_app/views/home_screen.dart';
 
-final config = SizeConfig();
 Widget backButton(BuildContext context) {
-  SizeConfig.init(context);
   return GestureDetector(
-    onTap: () => Navigator.pop(context),
+    onTap: () => Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => HomeScreen(),
+      ),
+    ),
     child: Container(
-      height: 3.5.height,
-      width: 8.width,
+      height: 50,
+      width: 40,
       decoration: BoxDecoration(
         color: AppColors.containerColor,
-        borderRadius: BorderRadius.circular(40),
+        borderRadius: BorderRadius.circular(50),
       ),
       padding: EdgeInsets.all(8),
-      child: Icon(Icons.arrow_back),
+      child: Center(child: Icon(Icons.arrow_back)),
     ),
   );
 }

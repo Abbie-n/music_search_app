@@ -11,9 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-  # Local storage
-  shared_preferences: ^2.0.6
+    
   # State management
   flutter_bloc: ^7.2.0
 

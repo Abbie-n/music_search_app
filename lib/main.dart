@@ -17,17 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: themeData,
-      routes: {'/home': (context) => HomeScreen()},
-      initialRoute: '/home',
-      home: MultiBlocProvider(
-        providers: [
-          BlocProvider(
-              create: (_) => SearchBloc(
-                    httpClient: http.Client(),
-                  )..add(SearchDone()))
-        ],
-        child: HomeScreen(),
-      ),
+      home: HomeScreen(),
     );
   }
 }

@@ -77,12 +77,15 @@ class Tracks extends Equatable {
     return Tracks(track: getTracks(json['track']));
   }
   static List<Track>? getTracks(json) {
-    List<Track>? _track;
-    if (json != null) {
+    print(json != null);
+    List<Track>? _track = <Track>[];
+    if (json != null && json.toString().contains('[')) {
       _track = <Track>[];
-      json.forEach((v) {
+      json?.forEach((v) {
         _track!.add(Track.fromJson(v));
       });
+    } else {
+      _track.add(Track.fromJson(json));
     }
     return _track;
   }
